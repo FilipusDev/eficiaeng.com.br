@@ -73,7 +73,7 @@ setup: ## Check tools' installs and assets, installs and download if needed
 	@mkdir -p ./assets/js && \
 	if [ ! -f "./assets/js/htmx.min.js" ]; then \
 		echo "htmx.min.js does not exist, downloading..."; \
-		curl -sL "https://cdn.jsdelivr.net/npm/htmx.org@{HTMX_VERSION}/dist/htmx.min.js" -o "./assets/js/htmx.min.js"; \
+		curl -sL "https://cdn.jsdelivr.net/npm/htmx.org@${HTMX_VERSION}/dist/htmx.min.js" -o "./assets/js/htmx.min.js"; \
 	else \
 		echo "htmx.min.js exists: ${HTMX_VERSION}"; \
 	fi; \
