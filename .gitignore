@@ -10,5 +10,11 @@ daisyui.js
 daisyui-theme.js
 output*.css
 
+# js
+htmx.min.js
+
 # generated templ go files
 *_templ.go
+
+# test report
+*cover*

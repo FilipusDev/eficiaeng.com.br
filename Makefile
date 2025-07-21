@@ -1,4 +1,6 @@
-.PHONY: setup templ server tailwind db-dev-down db-dev-up dev-up \
+.PHONY: setup templ server tailwind \
+	test test-watch test-cover \
+	db-dev-down db-dev-up dev-down dev-up \
 	local-down local-up \
 	help
 
@@ -9,6 +11,7 @@
 export TEMPL_VERSION=v0.3.898
 export TAILWINDCSS_VERSION=v4.1.10
 export DAISYUI_VERSION=v5.0.43
+export HTMX_VERSION=2.0.6
 
 # -- Environment detection: TOP --
 
@@ -34,39 +37,46 @@ endif
 
 setup: ## Check tools' installs and assets, installs and download if needed
 	@if ! command -v go >/dev/null 2>&1; then \
-	echo "go not found, please install..."; \
-		else \
+		echo "go not found, please install..."; \
+	else \
 		echo "go is already installed: $$(go version)"; \
-		fi
+	fi
 	@if ! command -v templ >/dev/null 2>&1; then \
 		echo "templ not found, installing..."; \
 		go install github.com/a-h/templ/cmd/templ@${TEMPL_VERSION}; \
-		else \
+	else \
 		echo "templ is already installed: $$(templ version)"; \
-		fi
+	fi
 	@if ! command -v air >/dev/null 2>&1; then \
 		echo "air not found, installing..."; \
 		go install github.com/air-verse/air@latest; \
-		else \
+	else \
 		echo "air is already installed: $$(air -v)"; \
-		fi
+	fi
 	@if ! command tailwindcss >/dev/null 2>&1; then \
 		echo "tailwindcss not found, installing..."; \
 		curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/download/${TAILWINDCSS_VERSION}/tailwindcss-linux-x64; \
 		chmod +x tailwindcss; \
 		sudo mv tailwindcss /usr/local/bin/; \
-		else \
-		echo "tailwindcss is already installed: $$(tailwindcss -v)"; \
-		fi
+	else \
+		echo "tailwindcss is already installed: ${TAILWINDCSS_VERSION}"; \
+	fi
 	@mkdir -p ./assets/css && \
 	for file in daisyui.js daisyui-theme.js; do \
 		if [ ! -f "./assets/css/$$file" ]; then \
 			echo "$$file does not exist, downloading..."; \
 			curl -sL "https://github.com/saadeghi/daisyui/releases/download/${DAISYUI_VERSION}/$$file" -o "./assets/css/$$file"; \
 		else \
-			echo "$$file exists"; \
+			echo "$$file exists: ${DAISYUI_VERSION}"; \
 		fi; \
 	done
+	@mkdir -p ./assets/js && \
+	if [ ! -f "./assets/js/htmx.min.js" ]; then \
+		echo "htmx.min.js does not exist, downloading..."; \
+		curl -sL "https://cdn.jsdelivr.net/npm/htmx.org@{HTMX_VERSION}/dist/htmx.min.js" -o "./assets/js/htmx.min.js"; \
+	else \
+		echo "htmx.min.js exists: ${HTMX_VERSION}"; \
+	fi; \
 
 templ: ## Run templ generation in watch mode
 	templ generate \
@@ -87,6 +97,7 @@ tailwind: ## Watch Tailwind CSS changes
 	tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch
 
 clean: ## Cleans generated files from Templ and TailwindCss
+	rm -f cover*
 	rm -f ./assets/css/output.css
 	find ./templates -type f -name '*_templ.go' -delete
 	sleep 3
@@ -102,9 +113,29 @@ db-dev-up: ## Starts db-dev (from db-dev-docker-compose.yml)
 dev-down: clean ## Stop development server with all watchers
 
 dev-up: dev-down ## Start development server with all watchers
-	make -j3 tailwind templ server
+	make -j4 tailwind templ server test-watch
 
 # -- Dev Env: BOT --
+
+# -- Test Env: TOP --
+
+test: ## Runs 'go test ./...'
+	go test ./...
+
+test-watch: ## Watch for .go file changes and run tests
+	@echo "Starting test watcher..."
+	@inotifywait -m -r -e modify,create,delete --format '%w%f' ./ | while read FILE; do \
+		if [[ "$$FILE" == *.go ]]; then \
+			echo "Detected change in $$FILE, running tests..."; \
+			go test ./...; \
+		fi; \
+	done
+
+test-cover: ## Genertates test coverage report
+	go test ./... -coverprofile cover.out
+	go tool cover -html=cover.out -o cover.html
+
+# -- Test Env: BOT --
 
 # -- Local Build: TOP --
 
