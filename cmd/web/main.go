@@ -1,11 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/FilipusDev/filipus.dev.br/internal/config"
+	"github.com/FilipusDev/filipus.dev.br/internal/server"
 )
+
+// This variable will be set at build time by the -ldflags in the Dockerfile
+var assetsVersion string
 
 func main() {
 	// 0. Bootstrap Looger
@@ -21,5 +24,11 @@ func main() {
 	}
 	logger.Debug("\t !!! DEBUG !!! step 1: app config (cfg) successfully done")
 
-	fmt.Printf("%+v\n", cfg)
+	// TODO: 2. Connect to the database
+	logger.Debug("\t !!! DEBUG !!! step 2: TBD calling database.NewConnection(ctx, dsn, logger)")
+
+	// 3. Start the server
+	// Pass all dependencies to the server
+	logger.Debug("\t !!! DEBUG !!! step 3: calling server.start(cfg, dbpool, logger, assetsVersion)")
+	server.Start(cfg, logger, assetsVersion)
 }
