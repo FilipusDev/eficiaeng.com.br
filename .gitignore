@@ -1,0 +1,14 @@
+# air, templ, tailwindcss hot-reload crap
+tmp/
+
+# important ones
+.*env
+
+# css
+tailwindcss
+daisyui.js
+daisyui-theme.js
+output*.css
+
+# generated templ go files
+*_templ.go
