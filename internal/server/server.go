@@ -9,6 +9,7 @@ import (
 
 	"github.com/FilipusDev/filipus.dev.br/internal/config"
 	"github.com/FilipusDev/filipus.dev.br/templates"
+	"github.com/FilipusDev/filipus.dev.br/templates/layouts"
 	"github.com/a-h/templ"
 )
 
@@ -136,19 +137,26 @@ func (w *statusWriter) WriteHeader(status int) {
 // struct, which gives it access to dependencies like `s.webSiteRepo` and `s.logger`.
 func (s *Server) handleWebSite(w http.ResponseWriter, r *http.Request) {
 	var pageComponent templ.Component
+	var pageTitle string
+
 	switch r.URL.Path {
 	case "/":
-		// FUTURE: Pass the data to the component.
-		// pageComponent = templates.HomePage(webSite.Content)
-		pageComponent = templates.Hello("FilipusDevBR")
+		if r.Method != http.MethodGet {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		pageComponent = templates.Hello("'new' Eficia Engenharia Website")
+		pageTitle = "Eficia Engenharia"
 	default:
 		s.logger.Warn("path not found for website", "host", r.Host, "path", r.URL.Path)
 		http.NotFound(w, r)
 		return
 	}
 
+	fullPage := layouts.Base(pageComponent, pageTitle, s.assetsVersion)
+
 	// Render the final component.
-	err := pageComponent.Render(context.Background(), w)
+	err := fullPage.Render(context.Background(), w)
 	if err != nil {
 		fmt.Println("error rendering contacts page:", err.Error())
 	}

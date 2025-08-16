@@ -1,0 +1,29 @@
+package layouts
+
+import "github.com/FilipusDev/filipus.dev.br/templates"
+
+templ App(content templ.Component) {
+	<!-- header: TOP -->
+	<!-- @site.Header() -->
+	<!-- header: BOT -->
+	<!-- pb-16 = header (h-16) -->
+	<div class="pb-16"></div>
+	<!-- contents... -->
+	<main class="flex-grow">
+		@templates.Hello("Eficia!!!")
+		<!-- ... -->
+		<!-- ... -->
+		<!-- ... -->
+		<!-- ... -->
+	</main>
+	<!-- footer: TOP -->
+	<!--
+	<div class="lg:hidden">
+		@site.Footer()
+	</div>
+	<div class="hidden lg:block">
+		@site.FooterLarge()
+	</div>
+  -->
+	<!-- footer: BOT -->
+}

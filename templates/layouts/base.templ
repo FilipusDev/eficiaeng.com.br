@@ -1,0 +1,25 @@
+package layouts
+
+templ Base(content templ.Component, title, assetsVersion string) {
+	<!DOCTYPE html>
+	<html lang="pt-BR" data-theme="eficia">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ title }</title>
+			<link rel="icon" href={ "/assets/images/favicon.ico?v=" + assetsVersion }/>
+			<!-- font Geist CDN -->
+			<!-- TODO: download font as assent? -->
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.0.3/index.min.css"/>
+			<link rel="stylesheet" href={ "/assets/css/output.css?v=" + assetsVersion } type="text/css"/>
+			<script src="/assets/js/htmx.min.js"></script>
+			<!-- Google Tag Manager Begin -->
+			<!-- End Google Tag Manager -->
+		</head>
+		<body class="font-display flex flex-col min-h-screen">
+			<!-- Google Tag Manager (noscript) -->
+			<!-- End Google Tag Manager (noscript) -->
+			@App(content)
+		</body>
+	</html>
+}

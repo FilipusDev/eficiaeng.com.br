@@ -94,7 +94,7 @@ server: ## Run air for Go hot reload
 	--misc.clean_on_exit true
 
 tailwind: ## Watch Tailwind CSS changes
-	tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch
+	tailwindcss -i ./assets/css/dev.input.css -o ./assets/css/output.css --watch
 
 clean: ## Cleans generated files from Templ and TailwindCss
 	rm -f cover*

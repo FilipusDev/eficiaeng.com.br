@@ -1,5 +1,5 @@
 @import "tailwindcss" source(none);
-@source "./templates/**/*.{templ}";
+@source "../../templates/**/*.{templ}";
 
 @theme {
   --font-display: "Geist Sans", system-ui, -apple-system, sans-serif;
