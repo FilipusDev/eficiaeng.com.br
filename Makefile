@@ -122,16 +122,20 @@ dev-up: dev-down ## Start development server with all watchers
 test: ## Runs 'go test ./...'
 	go test ./...
 
-test-watch: ## Watch for .go file changes and run tests
-	@echo "Starting test watcher..."
-	@inotifywait -m -r -e modify,create,delete --format '%w%f' ./ | while read FILE; do \
+test-watch: ## Watch for .go file changes and run tests (debounced)
+	@echo "Starting debounced test watcher..."
+	@inotifywait -m -r -e modify,create,delete --format '%w%f' ./ | \
+	while read -r FILE; do \
 		if [[ "$$FILE" == *.go ]]; then \
-			echo "Detected change in $$FILE, running tests..."; \
-			go test ./...; \
+			if [ -z "$$LAST_RUN" ] || [ "$$(($$(date +%s) - $$LAST_RUN))" -gt 1 ]; then \
+				echo "Detected changes ($$FILE), running tests..."; \
+				richgo test ./...; \
+				LAST_RUN=$$(date +%s); \
+			fi; \
 		fi; \
 	done
 
-test-cover: ## Genertates test coverage report
+test-cover: ## Generates test coverage report
 	go test ./... -coverprofile cover.out
 	go tool cover -html=cover.out -o cover.html
 

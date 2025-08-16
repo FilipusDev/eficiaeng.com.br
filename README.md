@@ -17,6 +17,7 @@ Dev Env dependencies:
 - [air](https://github.com/air-verse/air)
 - [tint](https://github.com/lmittmann/tint)
 - [inotify-tools](https://github.com/inotify-tools/inotify-tools)
+- [richgo](https://github.com/kyoh86/richgo)
 
 ## Project Organization
 
@@ -36,8 +37,9 @@ Dev Env dependencies:
 -->
 4. `yay -S inotify-tools` OR
    - `sudo pacman -S inotify-tools`
-   - `apt install inotify-tools` (never tested!)
-5. `make dev-up`
+   - `sudo apt install inotify-tools` (never tested!)
+5. `go install github.com/kyoh86/richgo@latest`
+6. `make dev-up`
 
 ### 1. make setup
 
@@ -55,7 +57,11 @@ Will install "kinda of" formatter for slog module.
 
 Will install a tool needed to "watch" the go test command.
 
-### 5. make dev-up
+### 5. go install github.com/kyoh86/richgo@latest
+
+Will install a colorful output for go test command.
+
+### 6. make dev-up
 
 Starts all needed watchers:
 
