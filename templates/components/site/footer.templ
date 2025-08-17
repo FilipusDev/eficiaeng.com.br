@@ -1,0 +1,244 @@
+package site
+
+import "github.com/FilipusDev/filipus.dev.br/templates/icons"
+
+//TODO:
+// - phone validation
+// - componentize!
+templ FooterDesktop() {
+	<footer id="footer" class="footer p-10 bg-primary text-primary-content">
+		<div class="grid grid-cols-2 gap-8 w-full">
+			<!-- Left Column - Contact & Social -->
+			<div class="space-y-6">
+				<!-- Contact Section -->
+				<div>
+					<h6 class="footer-title">Contato</h6>
+					<div class="space-y-2">
+						<a href="tel:+5511919181007" class="link hover:text-accent flex items-center gap-2">
+							@icons.AtEmail()
+							<span>(11) 91918-1007</span>
+						</a>
+						<a href="mailto:contato@eficiaeng.com.br" class="link hover:text-accent flex items-center gap-2">
+							@icons.AtEmail()
+							<span>contato@eficiaeng.com.br</span>
+						</a>
+					</div>
+				</div>
+				<!-- Social Media Section -->
+				<div>
+					<h6 class="footer-title">Redes Sociais</h6>
+					<div class="flex gap-4">
+						<a
+							href="https://www.linkedin.com/company/eficiaeng"
+							target="_blank"
+							aria-label="LinkedIn Eficia Engenharia"
+							class="hover:text-accent"
+						>
+							@icons.LinkedIn("size-8")
+						</a>
+						<a
+							href="https://www.instagram.com/eficiaeng"
+							target="_blank"
+							aria-label="Instagram Eficia Engenharia"
+							class="hover:text-accent"
+						>
+							@icons.Instagram("size-8")
+						</a>
+						<a
+							href="https://www.facebook.com/eficiaeng"
+							target="_blank"
+							aria-label="Facebook Eficia Engenharia"
+							class="hover:text-accent"
+						>
+							@icons.Facebook("size-8")
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- Right Column - Contact Form -->
+			<div class="w-full">
+				<h6 class="footer-title">Envie uma mensagem</h6>
+				<form action="/contact" method="post" class="space-y-4 w-full">
+					<div class="form-control flex-grow">
+						<label class="label" for="name">
+							<span class="label-text">Nome</span>
+						</label>
+						<input
+							type="text"
+							id="name"
+							name="name"
+							placeholder="Seu nome"
+							class="input input-bordered w-full text-base-content"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label" for="email">
+							<span class="label-text">e-mail</span>
+						</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="seu@email.com"
+							class="input input-bordered w-full text-base-content"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label" for="phone">
+							<span class="label-text">Telefone</span>
+						</label>
+						<input
+							type="tel"
+							id="phone"
+							name="phone"
+							placeholder="(99) 99999-9999"
+							class="input input-bordered w-full text-base-content"
+							oninput="formatPhoneNumber(this)"
+							pattern="^\(\d{2}\) \d{5}-\d{4}$"
+						/>
+					</div>
+					<div class="form-control flex-grow">
+						<label class="label" for="message">
+							<span class="label-text">Mensagem</span>
+						</label>
+						<textarea
+							id="message"
+							name="message"
+							rows="4"
+							class="textarea textarea-bordered w-full flex-grow text-base-content"
+							placeholder="Sua mensagem..."
+							required
+						></textarea>
+					</div>
+					<button type="submit" class="btn btn-accent mt-auto">
+						Enviar Mensagem
+					</button>
+				</form>
+			</div>
+		</div>
+	</footer>
+}
+
+templ FooterMobile() {
+	<footer id="footer" class="footer p-5 bg-primary text-primary-content">
+		<div class="space-y-8">
+			<!-- Contact Section -->
+			<div>
+				<h6 class="footer-title">Eficia Engenharia</h6>
+				<div class="space-y-2">
+					<a href="tel:+5511919181007" class="link hover:text-accent flex items-center gap-2">
+						@icons.AtEmail()
+						<span>(11) 91918-1007</span>
+					</a>
+					<a href="mailto:contato@eficiaeng.com.br" class="link hover:text-accent flex items-center gap-2">
+						@icons.AtEmail()
+						<span>contato@eficiaeng.com.br</span>
+					</a>
+				</div>
+			</div>
+			<!-- Quick Links -->
+			<nav>
+				<h6 class="footer-title">Links Rápidos</h6>
+				<div class="space-y-2">
+					<a href="/about" class="link hover:text-accent block">Sobre Nós</a>
+					<a href="/portfolio" class="link hover:text-accent block">Serviços</a>
+					<a href="/contact" class="link hover:text-accent block">Contato</a>
+				</div>
+			</nav>
+			<!-- Social Media -->
+			<div>
+				<h6 class="footer-title">Redes Sociais</h6>
+				<div class="flex gap-4">
+					<a
+						href="https://www.linkedin.com/company/eficiaeng"
+						target="_blank"
+						aria-label="LinkedIn Eficia Engenharia"
+						class="hover:text-accent"
+					>
+						@icons.LinkedIn()
+					</a>
+					<a
+						href="https://www.instagram.com/eficiaeng"
+						target="_blank"
+						aria-label="Instagram Eficia Engenharia"
+						class="hover:text-accent"
+					>
+						@icons.Instagram()
+					</a>
+					<a
+						href="https://www.facebook.com/eficiaeng"
+						target="_blank"
+						aria-label="Facebook Eficia Engenharia"
+						class="hover:text-accent"
+					>
+						@icons.Facebook()
+					</a>
+				</div>
+			</div>
+			<!-- Simple Contact Form -->
+			<div>
+				<h6 class="footer-title">Fale Conosco</h6>
+				<form action="/contact" method="post" class="space-y-3">
+					<div class="form-control flex-grow">
+						<label class="label" for="name">
+							<span class="label-text">Nome</span>
+						</label>
+						<input
+							type="text"
+							id="name"
+							name="name"
+							placeholder="Seu nome"
+							class="input input-bordered w-full text-base-content"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label" for="email">
+							<span class="label-text">e-mail</span>
+						</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="seu@email.com"
+							class="input input-bordered w-full text-base-content"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label class="label" for="phone">
+							<span class="label-text">Telefone</span>
+						</label>
+						<input
+							type="tel"
+							id="phone"
+							name="phone"
+							placeholder="(99) 99999-9999"
+							class="input input-bordered w-full text-base-content"
+							oninput="formatPhoneNumber(this)"
+							pattern="^\(\d{2}\) \d{5}-\d{4}$"
+						/>
+					</div>
+					<div class="form-control flex-grow">
+						<label class="label" for="message">
+							<span class="label-text">Mensagem</span>
+						</label>
+						<textarea
+							id="message"
+							name="message"
+							rows="4"
+							class="textarea textarea-bordered w-full flex-grow text-base-content"
+							placeholder="Sua mensagem..."
+							required
+						></textarea>
+					</div>
+					<button type="submit" class="btn btn-accent w-full">
+						Enviar
+					</button>
+				</form>
+			</div>
+		</div>
+	</footer>
+}

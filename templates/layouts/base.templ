@@ -7,7 +7,7 @@ templ Base(content templ.Component, title, assetsVersion string) {
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<title>{ title }</title>
-			<link rel="icon" href={ "/assets/images/favicon.ico?v=" + assetsVersion }/>
+			<link rel="icon" href={ "/assets/images/eficia-engenharia-favicon.ico?v=" + assetsVersion }/>
 			<!-- font Geist CDN -->
 			<!-- TODO: download font as assent? -->
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.0.3/index.min.css"/>
@@ -16,7 +16,7 @@ templ Base(content templ.Component, title, assetsVersion string) {
 			<!-- Google Tag Manager Begin -->
 			<!-- End Google Tag Manager -->
 		</head>
-		<body class="font-display flex flex-col min-h-screen">
+		<body class="font-display flex flex-col min-h-screen" hx-boost="true">
 			<!-- Google Tag Manager (noscript) -->
 			<!-- End Google Tag Manager (noscript) -->
 			@App(content)

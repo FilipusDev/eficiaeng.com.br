@@ -1,29 +1,20 @@
 package layouts
 
-import "github.com/FilipusDev/filipus.dev.br/templates"
+import (
+	"github.com/FilipusDev/filipus.dev.br/templates"
+	"github.com/FilipusDev/filipus.dev.br/templates/components/site"
+)
 
 templ App(content templ.Component) {
-	<!-- header: TOP -->
-	<!-- @site.Header() -->
-	<!-- header: BOT -->
-	<!-- pb-16 = header (h-16) -->
+	@site.Header()
 	<div class="pb-16"></div>
-	<!-- contents... -->
 	<main class="flex-grow">
 		@templates.Hello("Eficia!!!")
-		<!-- ... -->
-		<!-- ... -->
-		<!-- ... -->
-		<!-- ... -->
 	</main>
-	<!-- footer: TOP -->
-	<!--
 	<div class="lg:hidden">
-		@site.Footer()
+		@site.FooterMobile()
 	</div>
 	<div class="hidden lg:block">
-		@site.FooterLarge()
+		@site.FooterDesktop()
 	</div>
-  -->
-	<!-- footer: BOT -->
 }

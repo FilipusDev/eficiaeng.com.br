@@ -1,0 +1,83 @@
+package site
+
+import "github.com/FilipusDev/filipus.dev.br/templates/icons"
+
+templ Header() {
+	<header id="header" class="fixed top-0 left-0 right-0 z-10 w-full bg-primary text-primary-content">
+		<!-- navbar: TOP -->
+		<nav class="navbar shadow-sm h-16 pr-6">
+			<!-- navbar-start: TOP -->
+			<nav class="navbar-start">
+				<!-- logo start -->
+				<div id="logoHeader" class="flex">
+					<a href="/">
+						<img
+							src="/assets/images/eficia-engenharia-logo_white-over-blue.png"
+							alt="Eficia Engenharia Logo"
+							class="object-contain min-w-[85px] max-h-16"
+						/>
+					</a>
+				</div>
+			</nav>
+			<!-- logo end -->
+			<!-- navbar-start: BOT -->
+			<!-- navbar-end: TOP -->
+			<!-- mobile-menu start -->
+			<nav class="navbar-end">
+				<div id="mobileMenuHeader" class="dropdown dropdown-end">
+					<button type="button" tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+						@icons.MenuHamburguer1()
+					</button>
+					<ul
+						tabindex="0"
+						class="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-primary text-primary-content"
+					>
+						<li><a href="/">Home</a></li>
+						<li><a href="/about">Sobre Nós</a></li>
+						<li>
+							<details>
+								<summary>Serviços</summary>
+								<ul>
+									<li><a href="/portfolio/buildings">Edificações</a></li>
+									<li><a href="/portfolio/education">Educação</a></li>
+									<li><a href="/portfolio/industry">Indústria</a></li>
+									<li><a href="/portfolio/retail">Varejo</a></li>
+								</ul>
+							</details>
+						</li>
+						<li><a href="/contact">Contato</a></li>
+						<!--
+						<li><a href="/blog">Blog</a></li>
+            -->
+					</ul>
+				</div>
+				<!-- mobile-menu end -->
+				<!-- desktop-menu start -->
+				<div id="desktopMenuHeader" class="hidden lg:flex">
+					<ul class="menu menu-horizontal">
+						<li><a class="hover:bg-accent" href="/">Home</a></li>
+						<li><a class="hover:bg-accent" href="/about">Sobre Nós</a></li>
+						<li>
+							<details>
+								<summary class="hover:bg-accent">Serviços</summary>
+								<ul class="bg-primary">
+									<li><a class="hover:bg-accent" href="/portfolio/buildings">Edificações</a></li>
+									<li><a class="hover:bg-accent" href="/portfolio/education">Educação</a></li>
+									<li><a class="hover:bg-accent" href="/portfolio/industry">Indústria</a></li>
+									<li><a class="hover:bg-accent" href="/portfolio/retail">Varejo</a></li>
+								</ul>
+							</details>
+						</li>
+						<li><a class="hover:bg-accent" href="/contact">Contato</a></li>
+						<!--
+						<li><a class="hover:bg-accent" href="/blog">Blog</a></li>
+            -->
+					</ul>
+				</div>
+				<!-- desktop-menu end -->
+			</nav>
+			<!-- navbar-end: TOP -->
+		</nav>
+		<!-- navbar: TOP -->
+	</header>
+}
