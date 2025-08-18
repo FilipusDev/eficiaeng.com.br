@@ -1,0 +1,71 @@
+package sections
+
+import "github.com/FilipusDev/filipus.dev.br/templates/icons"
+
+templ HomeSolution() {
+	<section id="homeSolution">
+		<div class="mx-auto px-4 py-16 bg-base-100 text-base-content">
+			<div class="text-center mb-12">
+				<h2 class="text-4xl font-bold text-accent">Menos Desperdício, Mais Lucro</h2>
+				<p class="text-lg mx-8 mt-4 text-base-content/70">
+					Soluções inteligentes para otimizar seu consumo de energia
+				</p>
+			</div>
+			<div class="max-w-4xl mx-auto space-y-8 mb-16">
+				<!-- Solution Item 1 -->
+				<div class="flex items-start gap-6">
+					<div class="text-accent mt-1">
+						@icons.Bill("size-8")
+					</div>
+					<div>
+						<h3 class="text-2xl font-semibold">Redução na conta de luz</h3>
+						<p class="text-lg text-base-content/80 mt-2">
+							<!--Identificamos oportunidades para reduzir seus gastos com energia elétrica. -->
+						</p>
+					</div>
+				</div>
+				<!-- Solution Item 2 -->
+				<div class="flex items-start gap-6">
+					<div class="text-accent mt-1">
+						@icons.Compass("size-8")
+					</div>
+					<div>
+						<h3 class="text-2xl font-semibold">Processos mais eficientes</h3>
+						<p class="text-lg text-base-content/80 mt-2">
+							Otimizamos seus processos para maximizar a produtividade com menor consumo.
+						</p>
+					</div>
+				</div>
+				<!-- Solution Item 3 -->
+				<div class="flex items-start gap-6">
+					<div class="text-accent mt-1">
+						@icons.ChartPresentation("size-8")
+					</div>
+					<div>
+						<h3 class="text-2xl font-semibold">Relatórios claros e estratégicos</h3>
+						<p class="text-lg text-base-content/80 mt-2">
+							<!-- Dados transformados em insights acionáveis para sua tomada de decisão. -->
+						</p>
+					</div>
+				</div>
+				<!-- Solution Item 4 -->
+				<div class="flex items-start gap-6">
+					<div class="text-accent mt-1">
+						@icons.MagnifyingGlass("size-8")
+					</div>
+					<div>
+						<h3 class="text-2xl font-semibold">Soluções sob medida para o seu segmento</h3>
+						<p class="text-lg text-base-content/80 mt-2">
+							Estratégias personalizadas de acordo com as necessidades do seu negócio.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<a href="#diagForm">
+					<button class="btn btn-accent btn-lg px-8">Solicite um Diagnóstico agora</button>
+				</a>
+			</div>
+		</div>
+	</section>
+}

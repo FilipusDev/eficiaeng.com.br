@@ -14,8 +14,8 @@ templ FooterDesktop() {
 				<div>
 					<h6 class="footer-title">Contato</h6>
 					<div class="space-y-2">
-						<a href="tel:+5511919181007" class="link hover:text-accent flex items-center gap-2">
-							@icons.AtEmail()
+						<a href="https://wa.me/5511919181007" class="link hover:text-accent flex items-center gap-2">
+							@icons.WhatsApp()
 							<span>(11) 91918-1007</span>
 						</a>
 						<a href="mailto:contato@eficiaeng.com.br" class="link hover:text-accent flex items-center gap-2">
@@ -24,6 +24,14 @@ templ FooterDesktop() {
 						</a>
 					</div>
 				</div>
+				<nav>
+					<h6 class="footer-title">Links Rápidos</h6>
+					<div class="space-y-2">
+						<a href="/about" class="link hover:text-accent block">Sobre Nós</a>
+						<a href="/portfolio" class="link hover:text-accent block">Serviços</a>
+						<a href="/contact" class="link hover:text-accent block">Contato</a>
+					</div>
+				</nav>
 				<!-- Social Media Section -->
 				<div>
 					<h6 class="footer-title">Redes Sociais</h6>
@@ -57,8 +65,8 @@ templ FooterDesktop() {
 			</div>
 			<!-- Right Column - Contact Form -->
 			<div class="w-full">
-				<h6 class="footer-title">Envie uma mensagem</h6>
-				<form action="/contact" method="post" class="space-y-4 w-full">
+				<h6 class="footer-title">Solicite um Diagnóstico</h6>
+				<form id="diagForm" action="/contact" method="post" class="space-y-4 w-full">
 					<div class="form-control flex-grow">
 						<label class="label" for="name">
 							<span class="label-text">Nome</span>
@@ -128,8 +136,8 @@ templ FooterMobile() {
 			<div>
 				<h6 class="footer-title">Eficia Engenharia</h6>
 				<div class="space-y-2">
-					<a href="tel:+5511919181007" class="link hover:text-accent flex items-center gap-2">
-						@icons.AtEmail()
+					<a href="https://wa.me/5511919181007" class="link hover:text-accent flex items-center gap-2">
+						@icons.WhatsApp()
 						<span>(11) 91918-1007</span>
 					</a>
 					<a href="mailto:contato@eficiaeng.com.br" class="link hover:text-accent flex items-center gap-2">
@@ -157,7 +165,7 @@ templ FooterMobile() {
 						aria-label="LinkedIn Eficia Engenharia"
 						class="hover:text-accent"
 					>
-						@icons.LinkedIn()
+						@icons.LinkedIn("size-8")
 					</a>
 					<a
 						href="https://www.instagram.com/eficiaeng"
@@ -165,7 +173,7 @@ templ FooterMobile() {
 						aria-label="Instagram Eficia Engenharia"
 						class="hover:text-accent"
 					>
-						@icons.Instagram()
+						@icons.Instagram("size-8")
 					</a>
 					<a
 						href="https://www.facebook.com/eficiaeng"
@@ -173,14 +181,14 @@ templ FooterMobile() {
 						aria-label="Facebook Eficia Engenharia"
 						class="hover:text-accent"
 					>
-						@icons.Facebook()
+						@icons.Facebook("size-8")
 					</a>
 				</div>
 			</div>
 			<!-- Simple Contact Form -->
 			<div>
-				<h6 class="footer-title">Fale Conosco</h6>
-				<form action="/contact" method="post" class="space-y-3">
+				<h6 class="footer-title">Solicite um Diagnóstico</h6>
+				<form id="diagForm" action="/contact" method="post" class="space-y-3">
 					<div class="form-control flex-grow">
 						<label class="label" for="name">
 							<span class="label-text">Nome</span>
