@@ -1,15 +1,12 @@
 package layouts
 
-import (
-	"github.com/FilipusDev/filipus.dev.br/templates"
-	"github.com/FilipusDev/filipus.dev.br/templates/components/site"
-)
+import "github.com/FilipusDev/filipus.dev.br/templates/components/site"
 
 templ App(content templ.Component) {
 	@site.Header()
 	<div class="pb-16"></div>
 	<main class="flex-grow">
-		@templates.Hello("Eficia!!!")
+		@content
 	</main>
 	<div class="lg:hidden">
 		@site.FooterMobile()

@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/FilipusDev/filipus.dev.br/internal/config"
-	"github.com/FilipusDev/filipus.dev.br/templates"
 	"github.com/FilipusDev/filipus.dev.br/templates/layouts"
+	"github.com/FilipusDev/filipus.dev.br/templates/pages"
 	"github.com/a-h/templ"
 )
 
@@ -145,7 +145,7 @@ func (s *Server) handleWebSite(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 			return
 		}
-		pageComponent = templates.Hello("'new' Eficia Engenharia Website")
+		pageComponent = pages.HomePage()
 		pageTitle = "Eficia Engenharia"
 	default:
 		s.logger.Warn("path not found for website", "host", r.Host, "path", r.URL.Path)

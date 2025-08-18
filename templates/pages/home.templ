@@ -1,0 +1,12 @@
+package pages
+
+import "github.com/FilipusDev/filipus.dev.br/templates/components/sections"
+
+templ HomePage() {
+	<div class="lg:hidden">
+		@sections.HomeHeroMobile()
+	</div>
+	<div class="hidden lg:block">
+		@sections.HomeHeroDesktop()
+	</div>
+}
