@@ -1,0 +1,27 @@
+package shared
+
+templ CardRight(props CardProps) {
+	{{ cardAnimation := props.getCardAnimation() }}
+	{{ bgClass, textClass, iconBgClass, iconTextClass := props.getCardVariantClasses() }}
+	<div class={ "card shadow-xl" , cardAnimation, bgClass, textClass }>
+		<div class="card-body">
+			<div class="flex flex-row items-center mb-4">
+				<div class="flex-1">
+					<h3 class="text-right card-title">{ props.Title }</h3>
+				</div>
+				<div class={ "p-4 rounded-full ml-4" , iconBgClass, iconTextClass }>
+					if props.Icon != nil {
+						@props.Icon
+					}
+				</div>
+			</div>
+			if props.Content != nil {
+				<div class="w-full">
+					<p class="text-justify">
+						@props.Content
+					</p>
+				</div>
+			}
+		</div>
+	</div>
+}

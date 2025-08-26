@@ -1,0 +1,36 @@
+package shared
+
+type CardVariant string
+
+const (
+	CardVariantBase      CardVariant = "base" // Default
+	CardVariantPrimary   CardVariant = "primary"
+	CardVariantSecondary CardVariant = "secondary"
+	CardVariantAccent    CardVariant = "accent"
+)
+
+type CardProps struct {
+	ImageURL string
+	Title    string
+	SubTitle string
+	Content  templ.Component
+	Icon     templ.Component
+	Variant  CardVariant
+}
+
+func (cp CardProps) getCardVariantClasses() (bgClass, textClass, iconBgClass, iconTextClass string) {
+	switch cp.Variant {
+	case CardVariantPrimary:
+		return "bg-primary", "text-primary-content", "bg-base-100", "text-base-content"
+	case CardVariantSecondary:
+		return "bg-secondary", "text-secondary-content", "bg-primary", "text-primary-content"
+	case CardVariantAccent:
+		return "bg-accent", "text-accent-content", "bg-base-100", "text-base-content"
+	default:
+		return "bg-base-100", "text-base-content", "bg-accent", "text-accent-content"
+	}
+}
+
+func (cp CardProps) getCardAnimation() (cardAnimation string) {
+	return "transition-transform hover:-translate-x-2 hover:-translate-y-2"
+}

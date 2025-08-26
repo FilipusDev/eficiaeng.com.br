@@ -1,0 +1,22 @@
+package shared
+
+templ SideCard(props CardProps) {
+	{{ cardAnimation := props.getCardAnimation() }}
+	{{ bgClass, textClass, iconBgClass, iconTextClass := props.getCardVariantClasses() }}
+	<div class={ "card card-side shadow-xl" , cardAnimation, bgClass, textClass }>
+		<figure class={ "p-4" , iconBgClass, iconTextClass }>
+			if props.Icon != nil {
+				@props.Icon
+			}
+		</figure>
+		<div class="card-body">
+			<h3 class="card-title">{ props.Title }</h3>
+			<p class="font-semibold">{ props.SubTitle }</p>
+			if props.Content != nil {
+				<p>
+					@props.Content
+				</p>
+			}
+		</div>
+	</div>
+}

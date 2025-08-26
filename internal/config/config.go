@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"log/slog"
 	"os"
 	"strconv"
@@ -77,12 +76,13 @@ func New(logger *slog.Logger) (*Config, error) {
 		"port",
 		port)
 
+	// TODO: solve this crap at some point!!!
 	logger.Debug("\t !!! DEBUG !!! getting environment variable", "env_var", "DATABASE_URL")
 	dsn := os.Getenv("DATABASE_URL")
-	if dsn == "" {
-		logger.Error("environment variable NOT FOUND, erroring...", "dsn", dsn)
-		return nil, fmt.Errorf("DATABASE_URL environment variable is not set")
-	}
+	// if dsn == "" {
+	// 	logger.Error("environment variable NOT FOUND, erroring...", "dsn", dsn)
+	// 	return nil, fmt.Errorf("DATABASE_URL environment variable is not set")
+	// }
 	logger.Debug("\t !!! DEBUG !!! environment variable found", "dsn", dsn)
 
 	logger.Debug("\t !!! DEBUG !!! creating configuration struct", "cfg", "")

@@ -1,0 +1,23 @@
+package shared
+
+templ ProfileCard(props CardProps) {
+	{{ bgClass, textClass, iconBgClass, iconTextClass := props.getCardVariantClasses() }}
+	<div class={ "card shadow-xl" , bgClass, textClass }>
+		<div class="card-body items-center text-left">
+			if props.ImageURL != "" {
+				<div class="avatar">
+					<div
+						class={ "w-24 rounded-full ring ring-neutral ring-offset-neutral ring-offset-2" , iconBgClass, iconTextClass }
+					>
+						<img src={ props.ImageURL } alt={ "Imagem de " + props.Title }/>
+					</div>
+				</div>
+			}
+			<h3 class="card-title">{ props.Title }</h3>
+			<p class="font-semibold">{ props.SubTitle }</p>
+			<p class="mt-2">
+				@props.Content
+			</p>
+		</div>
+	</div>
+}

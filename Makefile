@@ -146,7 +146,7 @@ test-cover: ## Generates test coverage report
 # TODO: missing Cloudflare tunnel crap
 
 local-down: ## Stops local server
-	docker compose down --volumes --rmi local
+	docker compose down
 	sleep 3
 
 local-up: local-down ## Starts local server

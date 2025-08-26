@@ -1,0 +1,16 @@
+services:
+  go_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # TODO: Need to be handle at some point!!!
+        ASSETS_VERSION: ${GIT_HASH}
+    container_name: go_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - APP_PORT=${APP_PORT}
+    ports:
+      - "${APP_PORT}:${APP_PORT}"

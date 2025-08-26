@@ -1,0 +1,21 @@
+package shared
+
+templ Card(props CardProps) {
+	{{ cardAnimation := props.getCardAnimation() }}
+	{{ bgClass, textClass, iconBgClass, iconTextClass := props.getCardVariantClasses() }}
+	<div class={ "card shadow-xl" , cardAnimation, bgClass, textClass }>
+		<div class="card-body items-center text-center">
+			<figure class={ "p-4 mb-4 rounded-full" , iconBgClass, iconTextClass }>
+				if props.Icon != nil {
+					@props.Icon
+				}
+			</figure>
+			<h3 class="card-title">{ props.Title }</h3>
+			if props.Content != nil {
+				<p>
+					@props.Content
+				</p>
+			}
+		</div>
+	</div>
+}

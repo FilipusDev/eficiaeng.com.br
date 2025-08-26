@@ -1,0 +1,55 @@
+package sections
+
+import "github.com/FilipusDev/filipus.dev.br/templates/icons"
+import "github.com/FilipusDev/filipus.dev.br/templates/components/shared"
+
+templ HomePortfolio() {
+	<section id="homePortfolio">
+		<div class="mx-auto px-4 p-16 bg-secondary text-secondary-content">
+			<div class="text-center mb-12">
+				<h2 class="text-4xl font-bold">Nossos Serviços</h2>
+				<p class="text-lg mx-8 mt-2 text-secondary-content/70">
+					Um diagnóstico completo que vai muito além da sua conta de energia
+				</p>
+			</div>
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-24 xl:px-60 2xl:px-100">
+				<!-- card top left -->
+				<a href="/portfolio/buildings">
+					@shared.SideCard(shared.CardProps{
+						Title:   "Edificações",
+						Content: templ.Raw(``),
+						Icon:    icons.Buildings("size-10 lg:size-8"),
+						Variant: shared.CardVariantPrimary,
+					})
+				</a>
+				<!-- card top right -->
+				<a href="/portfolio/education">
+					@shared.SideCard(shared.CardProps{
+						Title:   "Educação",
+						Content: templ.Raw(``),
+						Icon:    icons.Education("size-10 lg:size-8"),
+						Variant: shared.CardVariantPrimary,
+					})
+				</a>
+				<!-- card bot left -->
+				<a href="/portfolio/industry">
+					@shared.SideCard(shared.CardProps{
+						Title:   "Indústria",
+						Content: templ.Raw(``),
+						Icon:    icons.Industry("size-10 lg:size-8"),
+						Variant: shared.CardVariantPrimary,
+					})
+				</a>
+				<!-- card bot right -->
+				<a href="/portfolio/retail">
+					@shared.SideCard(shared.CardProps{
+						Title:   "Varejo",
+						Content: templ.Raw(``),
+						Icon:    icons.Retail("size-10 lg:size-8"),
+						Variant: shared.CardVariantPrimary,
+					})
+				</a>
+			</div>
+		</div>
+	</section>
+}

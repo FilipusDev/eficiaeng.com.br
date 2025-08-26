@@ -1,0 +1,11 @@
+services:
+  go_app_prod:
+    image: eficiaengcombr-go_app
+    container_name: go_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - APP_PORT=${APP_PORT}
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
